@@ -69,7 +69,7 @@ public class ExamplePlugin extends Plugin{
         //register a whisper command which can be used to send other players messages
         handler.<Player>register("whisper", "<player> <text...>", "Whisper text to another player.", (args, player) -> {
             //find player by name
-            Player other = Groups.player.find(Strings.stripColors(p); -> p.name.equalsIgnoreCase(args[0]));
+            Player other = Groups.player.find(p -> Strings.stripColors(p).name.equalsIgnoreCase(args[0]));
 
             //give error message with scarlet-colored text if player isn't found
             if(other == null){
