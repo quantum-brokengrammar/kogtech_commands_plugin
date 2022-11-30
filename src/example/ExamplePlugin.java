@@ -53,7 +53,7 @@ public class ExamplePlugin extends Plugin{
             }
 
             //send the other player a message, using [lightgray] for gray text color and [] to reset color
-            player.sendMessage("[lightgray](pm) (me) ->" + player.name + ":[] " + args[1])
+            player.sendMessage("[lightgray](pm) (me) ->" + player.name + ":[] " + args[1]);
             other.sendMessage("[lightgray](pm) (" + player.name + ") -> (me):[] " + args[1]);
         });
     }
