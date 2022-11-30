@@ -35,25 +35,19 @@ public class ExamplePlugin extends Plugin{
     //register commands that player can invoke in-game
     @Override
     public void registerClientCommands(CommandHandler handler){
-
-        //register a simple reply command
-        handler.<Player>register("reply", "<text...>", "A simple ping command that echoes a player's text.", (args, player) -> {
-            player.sendMessage("You said: [accent] " + args[0]);
-        });
-
-        //register a whisper command which can be used to send other players messages
-        handler.<Player>register("whisper", "<player> <text...>", "Whisper text to another player.", (args, player) -> {
-            //find player by name
-            Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]));
-
-            //give error message with scarlet-colored text if player isn't found
-            if(other == null){
-                player.sendMessage("[scarlet]No player by that name found!");
-                return;
-            }
-
-            //send the other player a message, using [lightgray] for gray text color and [] to reset color
-            other.sendMessage("[lightgray](whisper) " + player.name + ":[] " + args[1]);
-        });
+                commands.add("whisper", "<username|ID> <message...>","Send a private message to a player", false, false, (arg, data) -> {
+        	Players result = Players.findByNameOrID(arg);
+        	
+        	if (result.found) {
+        		String message = String.join(" ", result.rest);
+        		
+        		if (!Strings.stripColors(message).isBlank()) {
+        			result.data.msgData.setTarget(data);
+            		Call.sendMessage(data.player.con, message, "[sky]me [gold]--> " + NetClient.colorizeName(result.player.id, result.data.realName), data.player);
+            		Call.sendMessage(result.player.con, message, NetClient.colorizeName(data.player.id, data.realName) + " [gold]--> [sky]me", data.player);
+        		
+        		} else Players.err(data.player, "[#ff]Error:[white] You can't send an empty message.");
+        	} else Players.errNotOnline(data.player);
+         });
     }
 }
