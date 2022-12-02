@@ -1,9 +1,12 @@
 package commands;
 
+import java.util.HashSet;
+
 import arc.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.content.*;
+import mindustry.game.Team;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
@@ -11,11 +14,29 @@ import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
 
 public class commandsPlugin extends Plugin{
-
+    
+    private static double ratio = 0.6;
+    private HashSet<String> votes = new HashSet<>();
+    
     //called when game initializes
     @Override
     public void init(){}
-
+    
+    public commandsPlugin() {
+        Events.on(PlayerLeave.class, e -> {
+            Player player = e.player;
+            int cur = this.votes.size();
+            int req = (int) Math.ceil(ratio * Groups.player.size());
+            if(votes.contains(player.uuid())) {
+                votes.remove(player.uuid());
+                Call.sendMessage("MAP: [white]" + player.name + "[white] left, [green]" + cur + "[] votes, [green]" + req + "[] required");
+            }
+        });
+        // clear votes on game over
+        Events.on(GameOverEvent.class, e -> {
+            this.votes.clear();
+        });
+    }
     //register commands that run on the server
     @Override
     public void registerServerCommands(CommandHandler handler){
@@ -77,6 +98,22 @@ public class commandsPlugin extends Plugin{
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
+        });
+        //rtv command from mayli/RockTheVotePlugin
+        handler.<Player>register("votemap", "[map...]", "Vote to change map", (args, player) -> {
+            this.votes.add(player.uuid());
+            int cur = this.votes.size();
+            int req = (int) Math.ceil(0.6 * Groups.player.size());
+            Call.sendMessage("[red]MAP: [white]" + player.name + "[white] wants to change the map, [green]" + cur +
+                "[] votes, [green]" + req + "[] required");
+
+            if (cur < req) {
+                return;
+            }
+
+            this.votes.clear();
+            Call.sendMessage("MAP: [green]vote passed, changing map.");
+            Events.fire(new GameOverEvent(Team.crux));
         });
     }
 }
