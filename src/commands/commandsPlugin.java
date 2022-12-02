@@ -98,7 +98,7 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("calculator", "<a1>, <a2>, <operation>", "A simple command that player's", (args, player) -> {
             try {
-            switch(args[2])
+            switch(args[2]) {
                 case "+":
                     player.sendMessage(((double)args[0])+((double)args[1]));
                 case "-":
@@ -109,7 +109,7 @@ public class commandsPlugin extends Plugin{
                     player.sendMessage(((double)args[0])/((double)args[1]));
             }
             catch (Exception e){
-                player.sendMessage("Error: An error has occured while calculating.")
+                player.sendMessage("Error: An error has occured while calculating.");
             }
         });
     }
