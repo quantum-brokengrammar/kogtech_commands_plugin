@@ -1,7 +1,7 @@
 {
   "name": "commands_plugin",
   "author": "quantum-brokengrammar",
-  "main": "commands.CommandsPlugin",
+  "main": "commands.commandsPlugin",
   "description": "A plugin for commands for the server.",
   "version": 0.1.0
 }
