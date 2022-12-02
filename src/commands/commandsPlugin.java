@@ -37,12 +37,12 @@ public class commandsPlugin extends Plugin{
     public void registerClientCommands(CommandHandler handler){
 
         //register a simple reply command
-        handler.<Player>register("reply", "<text...>", "A simple ping command that echoes a player's text.", (args, player) -> {
+        handler.<Player>register("lag-test", "<text...>", "A simple ping command that echoes a player's text.", (args, player) -> {
             player.sendMessage("You said: [accent] " + args[0]);
         });
 
         //register a whisper command which can be used to send other players messages
-        handler.<Player>register("whisper", "<player> <text...>", "Whisper text to another player.", (args, player) -> {
+        handler.<Player>register("pm", "<player> <text...>", "Whisper text to another player.", (args, player) -> {
             //find player by name
             Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]));
 
