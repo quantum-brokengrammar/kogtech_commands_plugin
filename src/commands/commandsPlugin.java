@@ -20,10 +20,10 @@ public class commandsPlugin extends Plugin{
     public void init(){}
     
     public commandsPlugin() {
-        Events.on(PlayerLeave.class, e -> {
+        /*Events.on(PlayerLeave.class, e -> {
             Player player = e.player;
             }
-        });
+        });*/
     }
     //register commands that run on the server
     @Override
