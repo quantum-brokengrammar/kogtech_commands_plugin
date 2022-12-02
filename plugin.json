@@ -3,5 +3,5 @@
   "author": "quantum-brokengrammar",
   "main": "commands.CommandsPlugin",
   "description": "A plugin for commands for the server.",
-  "version": 1.0
+  "version": 0.1.0
 }
