@@ -89,8 +89,9 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("nickname", "<name...>", "Changes your nickname. Substitute spaces with dashes.", (args, player) -> {
             String nickname = args[0].replace("_", " ");
-            player.sendMessage("Changed nickname to: [accent]" + );
-            Player p = Groups.player.find(e->Strings.stripColors(player.name)==player; p.name = nickname+"[lightgray]("+player.name+"[lightgray])";
+            player.sendMessage("Changed nickname to: [accent]" + args[0];
+            Player p = Groups.player.find(e->Strings.stripColors(player.name)==player);
+            p.name = nickname+"[lightgray]("+player.name+"[lightgray])";
         });
     }
 }
