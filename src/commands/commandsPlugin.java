@@ -44,7 +44,11 @@ public class commandsPlugin extends Plugin{
     //register commands that player can invoke in-game
     @Override
     public void registerClientCommands(CommandHandler handler){
-
+        /* Template
+        handler.<Player>register("command", "<arg>", "A simple command that player's", (args, player) -> {
+            // comands here
+        });
+        */
         //register a simple reply command
         handler.<Player>register("lag-test", "<text...>", "A simple ping command that echoes a player's text.", (args, player) -> {
             player.sendMessage("You said: [accent] " + args[0]);
@@ -91,6 +95,17 @@ public class commandsPlugin extends Plugin{
             String nickname = args[0].replace("_", " ");
             player.sendMessage("Changed nickname to: [accent]" + args[0]);
             player.name = nickname+"[lightgray]("+player.name+"[lightgray])";
+        });
+        handler.<Player>register("calculator", "<a1>, <a2>, <operation>", "A simple command that player's", (args, player) -> {
+            switch(args[2])
+                case "+":
+                    player.sendMessage(((double)args[0])+((double)args[1]))
+                case "-":
+                    player.sendMessage(((double)args[0])-((double)args[1]))
+                case "*":
+                    player.sendMessage(((double)args[0])*((double)args[1]))
+                case "/":
+                    player.sendMessage(((double)args[0])/((double)args[1]))
         });
     }
 }
