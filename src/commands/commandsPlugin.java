@@ -42,7 +42,7 @@ public class commandsPlugin extends Plugin{
         });
 
         //register a whisper command which can be used to send other players messages
-        handler.<Player>register("pm", "<player> <text...>", "Whisper text to another player.", (args, player) -> {
+        handler.<Player>register("pm", "<player> <text...>", "Sends a private message to another player.", (args, player) -> {
             //find player by name
             Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0].replace("_", " ")));
 
@@ -55,6 +55,17 @@ public class commandsPlugin extends Plugin{
             //send the other player a message, using [lightgray] for gray text color and [] to reset color
             player.sendMessage("[lightgray](pm) (me) -> " + other.name + "[lightgray]:[white] " + args[1]);
             other.sendMessage("[lightgray](pm) (" + player.name + "[lightgray]) -> (me):[white] " + args[1]);
+        });
+        handler.<Player>register("me", "<text...>", "Broadcasts a roleplay message with asterisks to all players.", (args, player) -> {
+            Call.sendMessage("[lightgray]*"+player.name+"[lightgray] "+args[0]+"[lightgray]*");
+        });
+        handler.<Player>register("clear-chat", "Clears the chat. Needs admin to execute this command.", (player) -> {
+            if (player.admin) {
+                for (var i=0; i<22; i++) {Call.sendMessage("\n")}; 
+                Call.announce("[tan]Chat cleared by"+player.name)
+            } else {
+                player.sendMessage("[scarlet]You must be admin to use this command.");
+            }
         });
     }
 }
