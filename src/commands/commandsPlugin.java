@@ -59,7 +59,7 @@ public class commandsPlugin extends Plugin{
         handler.<Player>register("me", "<text...>", "Broadcasts a roleplay message with asterisks to all players.", (args, player) -> {
             Call.sendMessage("[lightgray]*"+player.name+"[lightgray] "+args[0]+"[lightgray]*");
         });
-        handler.<Player>register("clear-chat", "Clears the chat. Needs admin to execute this command.", (player) -> {
+        handler.<Player>register("clear-chat", "Clears the chat. Needs admin to execute this command.", (args, player) -> {
             if (player.admin) {
                 for (int i=0; i<22; i++) {
                     Call.sendMessage("\n");
