@@ -1,4 +1,4 @@
-package example;
+package commands;
 
 import arc.*;
 import arc.util.*;
@@ -10,7 +10,7 @@ import mindustry.mod.*;
 import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
 
-public class ExamplePlugin extends Plugin{
+public class commandsPlugin extends Plugin{
 
     //called when game initializes
     @Override
