@@ -22,7 +22,7 @@ public class commandsPlugin extends Plugin{
     public commandsPlugin() {
         /*Events.on(PlayerLeave.class, e -> {
             Player player = e.player;
-            }
+            
         });*/
     }
     //register commands that run on the server
@@ -51,7 +51,7 @@ public class commandsPlugin extends Plugin{
         });
 
         //register a whisper command which can be used to send other players messages
-        handler.<Player>register("pm", "<player> <text...>", "Sends a private message to another player.", (args, player) -> {
+        handler.<Player>register("pm", "<player> <text...>", "Sends a private message to another player. Substitute spaces with dashes.", (args, player) -> {
             //find player by name
             Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0].replace("_", " ")));
 
@@ -86,6 +86,11 @@ public class commandsPlugin extends Plugin{
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
+        });
+        handler.<Player>register("nickname", "<name...>", "Changes your nickname. Substitute spaces with dashes.", (args, player) -> {
+            String nickname = args[0].replace("_", " ");
+            player.sendMessage("Changed nickname to: [accent]" + );
+            Player p = Groups.player.find(e->Strings.stripColors(player.name)==player; p.name = nickname+"[lightgray]("+player.name+"[lightgray])";
         });
     }
 }
