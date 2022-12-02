@@ -62,7 +62,7 @@ public class commandsPlugin extends Plugin{
         handler.<Player>register("clear-chat", "Clears the chat. Needs admin to execute this command.", (player) -> {
             if (player.admin) {
                 for (var i=0; i<22; i++) {Call.sendMessage("\n")}; 
-                Call.announce("[tan]Chat cleared by"+player.name)
+                Call.announce("[tan]Chat cleared by"+player.name);
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
