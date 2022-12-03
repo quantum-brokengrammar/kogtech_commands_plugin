@@ -1,3 +1,5 @@
+[![Java CI](https://github.com/quantum-brokengrammar/kogtech_commands_plugin/actions/workflows/gradle.yml/badge.svg)](https://github.com/quantum-brokengrammar/kogtech_commands_plugin/actions/workflows/gradle.yml)
+
 # Kogtech Commands Plugin
 A simple plugin for Servers
 ## Client Commands (unchecked means not yet added)
