@@ -100,14 +100,6 @@ public class commandsPlugin extends Plugin{
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
         });
-        handler.<Player>register("randnum", "<decimal|whole> <min> <max>", "Random number command.", (args, player) -> {
-            if (args[0] == "decimal") {
-                player.sendMessage((double)((Math.random()*args[2])+args[1])%args[2]);
-            } else if (args[0] == "whole") {
-                player.sendMessage((int)((Math.random()*args[2])+args[1])%args[2]);
-            } else {
-                player.sendMessage("[#ff]Error: [white]Invalid input. Choose decimal or whole.");
-            }
-        });
+        
     }
 }
