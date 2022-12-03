@@ -79,7 +79,7 @@ public class commandsPlugin extends Plugin{
             if(other == null){
                 player.sendMessage("[scarlet]No player by that name found!\n");
 		player.sendMessage("[gold]Other players:\n");
-		Player playerl = Groups.player.each(e -> {e.name})
+		Player[] playerl = Groups.player.each(e -> {e.name});
 		for (String playerlist: playerl) {
 			player.sendMessage("[gold]Name: "+playerlist+"\n");
 		}
