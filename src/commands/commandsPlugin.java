@@ -13,7 +13,7 @@ import mindustry.mod.*;
 import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
 
-import plugins.RTV.*;
+import plugins.*;
 public class commandsPlugin extends Plugin{
     
     //called when game initializes
