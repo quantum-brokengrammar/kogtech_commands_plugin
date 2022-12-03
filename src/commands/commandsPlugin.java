@@ -23,19 +23,6 @@ public class commandsPlugin extends Plugin{
     }
     
     public commandsPlugin() {
-        Events.on(PlayerLeave.class, e -> {
-            Player player = e.player;
-            int cur = this.votes.size();
-            int req = (int) Math.ceil(ratio * Groups.player.size());
-            if(votes.contains(player.uuid())) {
-                votes.remove(player.uuid());
-                Call.sendMessage("[red]RTV: [accent]" + player.name + "[white] left, [green]" + cur + "[] votes, [green]" + req + "[] required");
-            }
-        });
-        // clear votes on game over
-        Events.on(GameOverEvent.class, e -> {
-            this.votes.clear();
-        });
     }
     //register commands that run on the server
     @Override
@@ -110,22 +97,5 @@ public class commandsPlugin extends Plugin{
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
         });
-        handler.<Player>register("rtv", "<map>", "Vote to change map", (args, player) -> {
-            this.votes.add(player.uuid());
-            int cur = this.votes.size();
-            int req = (int) Math.ceil(ratio * Groups.player.size());
-            Map selectedMap = maps.all().find(map -> Strings.stripColors(map.name()).replace(' ', '_').equalsIgnoreCase(Strings.stripColors(args[0]).replace(' ', '_')));
-            Call.sendMessage("[red]RTV: [accent]" + player.name + "[white] wants to change the map, [green]" + cur +
-                "[] votes, [green]" + req + "[] required");
-
-            if (cur < req) {
-                return;
-            }
-
-            this.votes.clear();
-            Call.sendMessage("[red]RTV: [green]vote passed, changing map.");
-            new RTV(selectedMap, Team.crux);
-        });
-        
     }
 }
