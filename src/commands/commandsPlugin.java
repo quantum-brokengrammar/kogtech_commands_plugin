@@ -93,11 +93,11 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("nickname", "<name...>", "Changes your nickname. Substitute spaces with dashes.", (args, player) -> {
             String nickname = args[0].replace("_", " ");
-            if (player.name.length() > 100||nickname.length() > 100) {
+            if (player.name.length() > 30||nickname.length() > 30 {
                 player.sendMessage("[#ff]Nickname Too Long!");
             } else {
             player.sendMessage("Changed nickname to: [accent]" + args[0]);
-            player.name = nickname+"[lightgray]("+player.name+"[lightgray])";
+            player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
         });
     }
