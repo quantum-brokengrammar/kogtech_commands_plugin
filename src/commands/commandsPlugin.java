@@ -13,7 +13,7 @@ import mindustry.mod.*;
 import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
 
-import plugins.RTV.*
+import plugins.RTV.*;
 public class commandsPlugin extends Plugin{
     
     //called when game initializes
@@ -124,7 +124,7 @@ public class commandsPlugin extends Plugin{
 
             this.votes.clear();
             Call.sendMessage("[red]RTV: [green]vote passed, changing map.");
-            new RTV(selectedMap, Team.crux)
+            new RTV(selectedMap, Team.crux);
         });
         
     }
