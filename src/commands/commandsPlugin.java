@@ -17,7 +17,14 @@ public class commandsPlugin extends Plugin{
     
     //called when game initializes
     @Override
-    public void init(){}
+    public void init(){
+        while (true) {
+            Thread.sleep(5000);
+            Call.announce("[stat]\u26a0 [#ff]SAVE YOUR SCHEMATICS.[] \u26a0"); 
+            Call.announce("[stat]\u26a0 [#ff]SAVE YOUR SCHEMATICS.[] \u26a0"); 
+        }
+    
+    }
     
     public commandsPlugin() {
         /*Events.on(PlayerLeave.class, e -> {
