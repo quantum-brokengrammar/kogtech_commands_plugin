@@ -19,9 +19,16 @@ public class commandsPlugin extends Plugin{
     @Override
     public void init(){
         while (true) {
+            try
+            {
             Thread.sleep(5000);
             Call.announce("[stat]\u26a0 [#ff]SAVE YOUR SCHEMATICS.[] \u26a0"); 
-            Call.announce("[stat]\u26a0 [#ff]SAVE YOUR SCHEMATICS.[] \u26a0"); 
+            Call.announce("[stat]\u26a0 [#ff]SAVE YOUR SCHEMATICS.[] \u26a0");
+            }
+            catch(Exception e)
+            {
+            System.out.println(e);
+            }
         }
     
     }
