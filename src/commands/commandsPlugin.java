@@ -137,7 +137,7 @@ public class commandsPlugin extends Plugin{
         			}
         		}
         	}
-            Call.infoMessage("[green]Map cleaned! Removed all blocks and units!")
+            Call.infoMessage("[green]Map cleaned! Removed all blocks and units!");
         });
     }
 }
