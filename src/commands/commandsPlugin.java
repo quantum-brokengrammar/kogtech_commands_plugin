@@ -14,7 +14,8 @@ import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
 
 public class commandsPlugin extends Plugin{
-    
+    private HashSet<String> votes = new HashSet<>();
+	
     //called when game initializes
     @Override
     public void init(){
@@ -25,7 +26,7 @@ public class commandsPlugin extends Plugin{
         Events.on(PlayerLeave.class, e -> {
             Player player = e.player;
             int cur = this.votes.size();
-            int req = (int) Math.ceil(ratio * Groups.player.size());
+            int req = (int) Math.ceil(0.6 * Groups.player.size());
             if(votes.contains(player.uuid())) {
                 votes.remove(player.uuid());
                 Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] left, [green]" + cur + "[] votes, [green]" + req + "[] required");
