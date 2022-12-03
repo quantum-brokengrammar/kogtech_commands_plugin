@@ -13,6 +13,12 @@ import mindustry.mod.*;
 import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
 
+import static mindustry.Vars.content;
+import static mindustry.Vars.maps;
+import static mindustry.Vars.netServer;
+import static mindustry.Vars.state;
+import static mindustry.Vars.world;
+
 public class commandsPlugin extends Plugin{
     private HashSet<String> votes = new HashSet<>();
 	
