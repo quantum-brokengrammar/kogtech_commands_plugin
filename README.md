@@ -1,4 +1,4 @@
-[![Java CI](https://github.com/quantum-brokengrammar/kogtech_commands_plugin/actions/workflows/gradle.yml/badge.svg)](https://github.com/quantum-brokengrammar/kogtech_commands_plugin/actions/workflows/gradle.yml)
+[![Java CI](https://github.com/quantum-brokengrammar/kogtech_commands_plugin/actions/workflows/gradle.yml/badge.svg)](https://github.com/quantum-brokengrammar/kogtech_commands_plugin/actions/workflows/gradle.yml) ![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=quantum-brokengrammar.kogtech_commands_plugin) ![Download](https://shields.io/github/downloads/quantum-brokengrammar/kogtech_commands_plugin/total)
 
 # Kogtech Commands Plugin
 A simple plugin for Servers
