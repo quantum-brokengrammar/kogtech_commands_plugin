@@ -2,8 +2,6 @@ package commands;
 
 import java.util.HashSet;
 
-import java.time.LocalTime
-
 import arc.*;
 import arc.util.*;
 import mindustry.*;
@@ -15,6 +13,7 @@ import mindustry.mod.*;
 import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
 
+import plugins.RTV.*
 public class commandsPlugin extends Plugin{
     
     //called when game initializes
@@ -24,10 +23,19 @@ public class commandsPlugin extends Plugin{
     }
     
     public commandsPlugin() {
-        /*Events.on(PlayerLeave.class, e -> {
+        Events.on(PlayerLeave.class, e -> {
             Player player = e.player;
-            
-        });*/
+            int cur = this.votes.size();
+            int req = (int) Math.ceil(ratio * Groups.player.size());
+            if(votes.contains(player.uuid())) {
+                votes.remove(player.uuid());
+                Call.sendMessage("[red]RTV: [accent]" + player.name + "[white] left, [green]" + cur + "[] votes, [green]" + req + "[] required");
+            }
+        });
+        // clear votes on game over
+        Events.on(GameOverEvent.class, e -> {
+            this.votes.clear();
+        });
     }
     //register commands that run on the server
     @Override
@@ -53,12 +61,10 @@ public class commandsPlugin extends Plugin{
             // comands here
         });
         */
-        //register a simple reply command
+        //Commands
         handler.<Player>register("lag-test", "<text...>", "A simple ping command that echoes a player's text.", (args, player) -> {
             player.sendMessage("You said: [accent] " + args[0]);
         });
-
-        //register a whisper command which can be used to send other players messages
         handler.<Player>register("pm", "<player> <text...>", "Sends a private message to another player. Substitute spaces with dashes.", (args, player) -> {
             //find player by name
             Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0].replace("_", " ")));
@@ -104,6 +110,21 @@ public class commandsPlugin extends Plugin{
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
         });
+        /*handler.<Player>register("rtv", "<map>", "Rock the vote to change map", (args, player) -> {
+            this.votes.add(player.uuid());
+            int cur = this.votes.size();
+            int req = (int) Math.ceil(ratio * Groups.player.size());
+            Call.sendMessage("[red]RTV: [accent]" + player.name + "[white] wants to change the map, [green]" + cur +
+                "[] votes, [green]" + req + "[] required");
+
+            if (cur < req) {
+                return;
+            }
+
+            this.votes.clear();
+            Call.sendMessage("[red]RTV: [green]vote passed, changing map.");
+            new RTV(args[0], Team.crux)
+        });*/
         
     }
 }
