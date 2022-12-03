@@ -77,7 +77,11 @@ public class commandsPlugin extends Plugin{
 
             //give error message with scarlet-colored text if player isn't found
             if(other == null){
-                player.sendMessage("[scarlet]No player by that name found!");
+                player.sendMessage("[scarlet]No player by that name found!\n");
+		player.sendMessage("[gold]Other players:\n");
+		for (String playerlist: Groups.player) {
+			player.sendMessage("[gold]Name: "+playerlist+"\n");
+		}
                 return;
             }
 
