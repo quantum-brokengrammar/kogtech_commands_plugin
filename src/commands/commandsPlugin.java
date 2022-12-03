@@ -91,13 +91,22 @@ public class commandsPlugin extends Plugin{
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
         });
-        handler.<Player>register("nickname", "<name...>", "Changes your nickname. Substitute spaces with dashes.", (args, player) -> {
+        handler.<Player>register("nickname", "<name...>", "Changes your nickname.", (args, player) -> {
             String nickname = args[0].replace("_", " ");
-            if (player.name.length() > 80||nickname.length() > 30 {
+            if (player.name.length() > 80||nickname.length() > 30) {
                 player.sendMessage("[#ff]Nickname Too Long!");
             } else {
             player.sendMessage("Changed nickname to: [accent]" + args[0]);
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
+            }
+        });
+        handler.<Player>register("randnum", "<decimal|whole> <min> <max>", "Random number command.", (args, player) -> {
+            if (args[0] == "decimal") {
+                player.sendMessage((double)((Math.random()*args[2])+args[1])%args[2]);
+            } else if (args[0] == "whole") {
+                player.sendMessage((int)((Math.random()*args[2])+args[1])%args[2]);
+            } else {
+                player.sendMessage("[#ff]Error: [white]Invalid input. Choose decimal or whole.");
             }
         });
     }
