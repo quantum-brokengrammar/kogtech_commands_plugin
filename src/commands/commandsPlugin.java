@@ -22,6 +22,19 @@ public class commandsPlugin extends Plugin{
     }
     
     public commandsPlugin() {
+        Events.on(PlayerLeave.class, e -> {
+            Player player = e.player;
+            int cur = this.votes.size();
+            int req = (int) Math.ceil(ratio * Groups.player.size());
+            if(votes.contains(player.uuid())) {
+                votes.remove(player.uuid());
+                Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] left, [green]" + cur + "[] votes, [green]" + req + "[] required");
+            }
+        });
+        // clear votes on game over
+        Events.on(GameOverEvent.class, e -> {
+            this.votes.clear();
+        });
     }
     //register commands that run on the server
     @Override
@@ -95,6 +108,36 @@ public class commandsPlugin extends Plugin{
             player.sendMessage("Changed nickname to: [accent]" + args[0]);
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
+        });
+        
+        handler.<Player>register("map-clearvote", "Vote to clear map", (args, player) -> {
+            this.votes.add(player.uuid());
+            int cur = this.votes.size();
+            int req = (int) Math.ceil(0.6f * Groups.player.size());
+            Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] wants to clear the map, [green]" + cur +
+                "[] votes, [green]" + req + "[] required");
+
+            if (cur < req) {
+                return;
+            }
+
+            this.votes.clear();
+            Call.sendMessage("[red]MapClearVote: [green]vote passed, clearing map.");
+            Call.infoMessage("[scarlet]\u26a0 The map will be cleared in [orange]10[] seconds! \u26a0\n[]All units, players, and buildings (except cores) will be destroyed.");
+        	try { Thread.sleep(10000); } 
+	        catch (InterruptedException e) {}
+            // clear map
+            mindustry.gen.Building block;
+            Groups.unit.each(u -> u.kill());
+        	for (int x=0; x<world.width(); x++) {
+        		for (int y=0; y<world.height(); y++) {
+        			block = world.build(x, y);
+        			if (block != null && (block.block != Blocks.coreShard && block.block != Blocks.coreNucleus && block.block != Blocks.coreFoundation && block.block != Blocks.coreBastion && block.block != Blocks.coreAcropolis && block.block != Blocks.coreCitadel)) {
+        				block.kill();
+        			}
+        		}
+        	}
+            Call.infoMessage("[green]Map cleaned! Removed all blocks and units!")
         });
     }
 }
