@@ -18,17 +18,7 @@ public class commandsPlugin extends Plugin{
     //called when game initializes
     @Override
     public void init(){
-        Call.announce("[stat]\u26a0 [#ff]SAVE YOUR SCHEMATICS.[] \u26a0"); 
-        Call.announce("[stat]\u26a0 [#ff]SAVE YOUR SCHEMATICS.[] \u26a0");
-        long expectedtime = System.currentTimeMillis();
-        while (true) {//Or any Loops
-            while(System.currentTimeMillis() < expectedtime){
-                //Empty Loop   
-            }
-        expectedtime += 5000; //Sample expectedtime += 1000; 1 second sleep
-        Call.announce("[stat]\u26a0 [#ff]SAVE YOUR SCHEMATICS.[] \u26a0"); 
-        Call.announce("[stat]\u26a0 [#ff]SAVE YOUR SCHEMATICS.[] \u26a0");
-        }
+        
     }
     
     public commandsPlugin() {
