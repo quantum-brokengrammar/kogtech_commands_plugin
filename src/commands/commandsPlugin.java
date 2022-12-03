@@ -74,16 +74,10 @@ public class commandsPlugin extends Plugin{
         handler.<Player>register("pm", "<player> <text...>", "Sends a private message to another player. Substitute spaces with dashes.", (args, player) -> {
             //find player by name
             Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0].replace("_", " ")));
-
-            //give error message with scarlet-colored text if player isn't found
+            //give error message with scarlet-colored text if play
             if(other == null){
                 player.sendMessage("[scarlet]No player by that name found!\n");
-		player.sendMessage("[gold]Other players:\n");
-		Player[] playerl = Groups.player.each(e -> {e.name;});
-		for (String playerlist: playerl) {
-			player.sendMessage("[gold]Name: "+playerlist+"\n");
-		}
-                return;
+
             }
 
             //send the other player a message, using [lightgray] for gray text color and [] to reset color
@@ -98,7 +92,7 @@ public class commandsPlugin extends Plugin{
                 for (int i=0; i<22; i++) {
                     Call.sendMessage("\n");
                 }; 
-                player.sendMessage("Cleared chat successfully.");
+                player.sendMessage("Cleared chat.");
                 Call.announce("[tan]Chat cleared by "+player.name);
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
