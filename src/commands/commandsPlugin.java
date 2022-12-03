@@ -144,6 +144,11 @@ public class commandsPlugin extends Plugin{
         		}
         	}
             Call.infoMessage("[green]Map cleaned! Removed all blocks and units!");
+	});
+        handler.<Player>register("players", "Outputs all the players online in the server.", (args, player) -> {
+            player.sendMessage("There are currently "+Groups.player.size()+" players online.\n");
+	    player.sendMessage("List of players:");
+	    Groups.player.each(e -> player.sendMessage("\n"+e.name));
         });
     }
 }
