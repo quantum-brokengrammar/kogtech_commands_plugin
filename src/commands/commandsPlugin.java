@@ -147,13 +147,13 @@ public class commandsPlugin extends Plugin{
 	});
 	    
         handler.<Player>register("players", "Outputs a list of all the players online in the server.", (args, player) -> {
-            player.sendMessage("There are currently "+Groups.player.size()+" players online.\n");
-	    player.sendMessage("List of players:");
-	    Groups.player.each(e -> player.sendMessage("\n"+e.name));
+            player.sendMessage("[stat]There are currently [green]"+Groups.player.size()+"[stat] players online.\n");
+	    player.sendMessage("[stat]List of players:");
+	    Groups.player.each(e -> player.sendMessage("[stat]"+e.name));
         });
 	
 	handler.<Player>register("units", "Outputs how many units on the server.", (args, player) -> {
-            player.sendMessage("There are currently "+Groups.unit.size()+" units.\n");
+            player.sendMessage("[stat]There are currently "+Groups.unit.size()+" units.\n");
         });
     }
 }
