@@ -106,7 +106,7 @@ public class commandsPlugin extends Plugin{
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
         });
-        handler.<Player>register("nick", "<name...>", "Changes your nickname.", (args, player) -> {
+        handler.<Player>register("nick", "<name...>", "Changes your nickname. You need to rejoin to clear it.", (args, player) -> {
             String nickname = args[0].replace("_", " ");
             if (player.name.length() > 80||nickname.length() > 30) {
                 player.sendMessage("[#ff]Nickname Too Long!");
