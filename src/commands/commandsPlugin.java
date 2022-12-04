@@ -87,7 +87,7 @@ public class commandsPlugin extends Plugin{
         handler.<Player>register("me", "<text...>", "Broadcasts a roleplay message with asterisks to all players.", (args, player) -> {
             Call.sendMessage("[lightgray]*"+player.name+"[lightgray] "+args[0]+"[lightgray]*");
         });
-        handler.<Player>register("clear-chat", "Clears the chat. Needs admin to execute this command.", (args, player) -> {
+        handler.<Player>register("clrchat", "Clears the chat. Needs admin to execute this command.", (args, player) -> {
             if (player.admin) {
                 for (int i=0; i<22; i++) {
                     Call.sendMessage("\n");
@@ -106,7 +106,7 @@ public class commandsPlugin extends Plugin{
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
         });
-        handler.<Player>register("nickname", "<name...>", "Changes your nickname.", (args, player) -> {
+        handler.<Player>register("nick", "<name...>", "Changes your nickname.", (args, player) -> {
             String nickname = args[0].replace("_", " ");
             if (player.name.length() > 80||nickname.length() > 30) {
                 player.sendMessage("[#ff]Nickname Too Long!");
@@ -116,7 +116,7 @@ public class commandsPlugin extends Plugin{
             }
         });
         
-        handler.<Player>register("map-clearvote", "Vote to clear map", (args, player) -> {
+        handler.<Player>register("mcv", "Vote to clear map", (args, player) -> {
             this.votes.add(player.uuid());
             int cur = this.votes.size();
             int req = (int) Math.ceil(0.6f * Groups.player.size());
