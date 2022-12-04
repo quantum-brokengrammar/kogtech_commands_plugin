@@ -9,6 +9,7 @@ import mindustry.content.*;
 import mindustry.game.Team;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
+import mindustry.gen.Player;
 import mindustry.mod.*;
 import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
