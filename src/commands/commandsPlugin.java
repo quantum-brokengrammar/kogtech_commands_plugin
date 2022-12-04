@@ -167,7 +167,7 @@ public class commandsPlugin extends Plugin{
                     player.sendMessage("[stat]IPs: "+infopl.ips.toString()); 
                     player.sendMessage("[stat]Times joined: "+infopl.timesJoined.toString()); 
                     player.sendMessage("[stat]Times kicked: "+infopl.timesKicked.toString()); 
-                    player.sendMessage("[stat]Banned?: "infopl.banned.toString()); 
+                    player.sendMessage("[stat]Banned?: "+infopl.banned.toString()); 
                 } else {
                     player.sendMessage("[scarlet]No player by that name found!");
                 }
