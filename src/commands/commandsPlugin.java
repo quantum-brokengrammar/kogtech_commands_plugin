@@ -159,11 +159,12 @@ public class commandsPlugin extends Plugin{
         });
 	    handler.<Player>register("infop", "<player>", "Gets player info.", (args, player) -> {
             if (player.admin) {
-                if (Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0])) != null) {
-                    Player pfind = Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]));
+                if (Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0])) != null) {
+                    // Player pfind = Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]));
+                    Player pfind = Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0]));
                     player.sendMessage("[stat]Player information:");
                     player.sendMessage("[stat]Last name: "+pfind.name.toString()); 
-                    player.sendMessage("[stat]Names: "+pfind.names.toString()); ; 
+                    player.sendMessage("[stat]Names: "+pfind.names.toString());
                     player.sendMessage("[stat]Current UUID: "+pfind.uuid.toString()); 
                     player.sendMessage("[stat]IPs: "+pfind.ips.toString()); 
                     player.sendMessage("[stat]Times joined: "+pfind.timesJoined.toString()); 
