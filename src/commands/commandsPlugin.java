@@ -166,6 +166,11 @@ public class commandsPlugin extends Plugin{
                     player.sendMessage("[stat]Last name: "+pfind.name.toString()); 
                     player.sendMessage("[stat]Current UUID: "+pfind.uuid().toString()); 
                     player.sendMessage("[stat]IP: "+pfind.ip().toString()); 
+                    player.sendMessage("[stat]IPs: "+pfind.getInfo().ips.toString()); 
+                    player.sendMessage("[stat]Names: "+pfind.getInfo().names.toString()); 
+                    player.sendMessage("[stat]Times joined: "+pfind.getInfo().timesJoined.toString()); 
+                    player.sendMessage("[stat]Times kicked: "+pfind.getInfo().timesKicked.toString()); 
+                    player.sendMessage("[stat]Banned? "+pfind.getInfo().banned.toString()); 
 
                 } else {
                     player.sendMessage("[scarlet]No player by that name found!");
