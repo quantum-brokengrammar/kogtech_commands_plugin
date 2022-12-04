@@ -157,7 +157,7 @@ public class commandsPlugin extends Plugin{
 	    handler.<Player>register("units", "Outputs how many units on the server.", (args, player) -> {
             player.sendMessage("[stat]There are currently "+Groups.unit.size()+" units.");
         });
-	    handler.<Player>register("infop", "<player>", "Gets player info.", (args, player) -> {
+	    handler.<Player>register("infop", "<player...>", "Gets player info.", (args, player) -> {
             if (player.admin) {
                 if (Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0])) != null) {
                     // Player pfind = Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]));
