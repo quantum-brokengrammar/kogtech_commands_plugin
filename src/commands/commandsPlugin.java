@@ -20,6 +20,7 @@ import static mindustry.Vars.state;
 import static mindustry.Vars.world;
 
 public class commandsPlugin extends Plugin{
+    //mcv command
     private HashSet<String> votes = new HashSet<>();
 	
     //called when game initializes
@@ -144,7 +145,7 @@ public class commandsPlugin extends Plugin{
         		}
         	}
             Call.infoMessage("[green]Map cleaned! Removed all blocks and units!");
-	});
+	    });
 	    
         handler.<Player>register("players", "Outputs a list of all the players online in the server.", (args, player) -> {
             player.sendMessage("[stat]There are currently [green]"+Groups.player.size()+"[stat] players online.\n");
@@ -152,8 +153,26 @@ public class commandsPlugin extends Plugin{
 	    Groups.player.each(e -> player.sendMessage("[stat]"+e.name));
         });
 	
-	handler.<Player>register("units", "Outputs how many units on the server.", (args, player) -> {
+	    handler.<Player>register("units", "Outputs how many units on the server.", (args, player) -> {
             player.sendMessage("[stat]There are currently "+Groups.unit.size()+" units.\n");
+        });
+	    handler.<Player>register("infop", "<player>", "Gets player info.", (args, player) -> {
+            if (player.admin) {
+                if (Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0])) != null) {
+                    player.sendMessage("[stat]Player information:");
+                    player.sendMessage("[stat]Last name: "+p.name.toString()); 
+                    player.sendMessage("[stat]Names: "+p.names.toString()); 
+                    player.sendMessage("[stat]Current UUID: "+p.uuid.toString()); 
+                    player.sendMessage("[stat]IPs: "+p.ips.toString()); 
+                    player.sendMessage("[stat]Times joined: "+p.timesJoined.toString()); 
+                    player.sendMessage("[stat]Times kicked: "+p.timesKicked.toString()); 
+                    player.sendMessage("[stat]Banned?: "+p.banned.toString()); 
+                } else {
+                    player.sendMessage("[scarlet]No player by that name found!");
+                }
+            } else {
+                player.sendMessage("[scarlet]You must be admin to use this command.");
+            }
         });
     }
 }
