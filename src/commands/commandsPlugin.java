@@ -149,18 +149,18 @@ public class commandsPlugin extends Plugin{
 	    });
 	    
         handler.<Player>register("players", "Outputs a list of all the players online in the server.", (args, player) -> {
-            player.sendMessage("[stat]There are currently [green]"+Groups.player.size()+"[stat] players online.\n");
+            player.sendMessage("[stat]There are currently [green]"+Groups.player.size()+"[stat] players online.");
 	    player.sendMessage("[stat]List of players:");
 	    Groups.player.each(e -> player.sendMessage("[stat]"+e.name));
         });
 	
 	    handler.<Player>register("units", "Outputs how many units on the server.", (args, player) -> {
-            player.sendMessage("[stat]There are currently "+Groups.unit.size()+" units.\n");
+            player.sendMessage("[stat]There are currently "+Groups.unit.size()+" units.");
         });
 	    handler.<Player>register("infop", "<player>", "Gets player info.", (args, player) -> {
             if (player.admin) {
                 if (Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0])) != null) {
-                    Player pfind = Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]))
+                    Player pfind = Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]));
                     player.sendMessage("[stat]Player information:");
                     player.sendMessage("[stat]Last name: "+pfind.name.toString()); 
                     player.sendMessage("[stat]Names: "+pfind.names.toString()); ; 
