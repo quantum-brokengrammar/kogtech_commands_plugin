@@ -159,15 +159,16 @@ public class commandsPlugin extends Plugin{
         });
 	    handler.<Player>register("infop", "<player>", "Gets player info.", (args, player) -> {
             if (player.admin) {
-                if (Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0])) != null) {
+                if (Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0])) != null) {
+                    Player pfind = Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]))
                     player.sendMessage("[stat]Player information:");
-                    player.sendMessage("[stat]Last name: "+(Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]).name).toString())); 
-                    player.sendMessage("[stat]Names: "+(Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]).names).toString())); 
-                    player.sendMessage("[stat]Current UUID: "+(Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]).uuid).toString())); 
-                    player.sendMessage("[stat]IPs: "+(Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]).ips).toString())); 
-                    player.sendMessage("[stat]Times joined: "+(Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]).timesJoined).toString())); 
-                    player.sendMessage("[stat]Times kicked: "+(Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]).timesKicked).toString())); 
-                    player.sendMessage("[stat]Banned?: "+(Groups.player.each(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0]).banned).toString())); 
+                    player.sendMessage("[stat]Last name: "+pfind.name.toString()); 
+                    player.sendMessage("[stat]Names: "+pfind.names.toString()); ; 
+                    player.sendMessage("[stat]Current UUID: "+pfind.uuid.toString()); 
+                    player.sendMessage("[stat]IPs: "+pfind.ips.toString()); 
+                    player.sendMessage("[stat]Times joined: "+pfind.timesJoined.toString()); 
+                    player.sendMessage("[stat]Times kicked: "+pfind.timesKicked.toString()); 
+                    player.sendMessage("[stat]Banned?: "+pfind.banned.toString()); 
                 } else {
                     player.sendMessage("[scarlet]No player by that name found!");
                 }
