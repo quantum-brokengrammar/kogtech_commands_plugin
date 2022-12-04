@@ -159,14 +159,15 @@ public class commandsPlugin extends Plugin{
 	    handler.<Player>register("infop", "<player>", "Gets player info.", (args, player) -> {
             if (player.admin) {
                 if (Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0])) != null) {
+			        Player infopl = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0])
                     player.sendMessage("[stat]Player information:");
-                    player.sendMessage("[stat]Last name: "+p.name.toString()); 
-                    player.sendMessage("[stat]Names: "+p.names.toString()); 
-                    player.sendMessage("[stat]Current UUID: "+p.uuid.toString()); 
-                    player.sendMessage("[stat]IPs: "+p.ips.toString()); 
-                    player.sendMessage("[stat]Times joined: "+p.timesJoined.toString()); 
-                    player.sendMessage("[stat]Times kicked: "+p.timesKicked.toString()); 
-                    player.sendMessage("[stat]Banned?: "+p.banned.toString()); 
+                    player.sendMessage("[stat]Last name: "+infopl.name.toString()); 
+                    player.sendMessage("[stat]Names: "+infopl.names.toString()); 
+                    player.sendMessage("[stat]Current UUID: "+infopl.uuid.toString()); 
+                    player.sendMessage("[stat]IPs: "+infopl.ips.toString()); 
+                    player.sendMessage("[stat]Times joined: "+infopl.timesJoined.toString()); 
+                    player.sendMessage("[stat]Times kicked: "+infopl.timesKicked.toString()); 
+                    player.sendMessage("[stat]Banned?: "infopl.banned.toString()); 
                 } else {
                     player.sendMessage("[scarlet]No player by that name found!");
                 }
