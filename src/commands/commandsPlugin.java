@@ -75,11 +75,14 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("pm", "<player> <text...>", "Sends a private message to another player. Substitute spaces with dashes.", (args, player) -> {
             //find player by name
-            Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0].replace("_", " ")));
+            Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0].replaceAll("_", " ")));
             //give error message with scarlet-colored text if play
             if(other == null){
-                player.sendMessage("[scarlet]No player by that name found!\n");
-
+                player.sendMessage("[scarlet]No player by that name found!");
+                if (Groups.player.size() <= 10) {
+                    player.sendMessage("[stat]Other players:");
+                    Groups.player.each(e -> player.sendMessage("[white]"+Strings.stripColors(e.name).toLowerCase().replaceAll("_", " ")));
+                }
             }
 
             //send the other player a message, using [lightgray] for gray text color and [] to reset color
@@ -171,7 +174,7 @@ public class commandsPlugin extends Plugin{
                     player.sendMessage("[stat]Times joined: [white]"+String.valueOf(pfind.getInfo().timesJoined)); 
                     player.sendMessage("[stat]Times kicked: [white]"+String.valueOf(pfind.getInfo().timesKicked)); 
                     player.sendMessage("[stat]Banned?: [white]"+String.valueOf(pfind.getInfo().banned)); 
-
+                    player.sendMessage("[stat]Admin?: [white]"+pfind.admin.toString()); 
                 } else {
                     player.sendMessage("[scarlet]No player by that name found!");
                 }
