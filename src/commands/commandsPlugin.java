@@ -81,7 +81,7 @@ public class commandsPlugin extends Plugin{
                 player.sendMessage("[scarlet]No player by that name found!");
                 if (Groups.player.size() <= 10) {
                     player.sendMessage("[stat]Other players:");
-                    Groups.player.each(e -> player.sendMessage("[white]"+Strings.stripColors(e.name).toLowerCase().replace("_", " "))));
+                    Groups.player.each(e -> player.sendMessage("[white]"+Strings.stripColors(e.name).toLowerCase().replace("_", " ")));
                 }
             }
 
