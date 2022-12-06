@@ -75,17 +75,17 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("pm", "<player> <text...>", "Sends a private message to another player. Substitute spaces with dashes.", (args, player) -> {
             //find player by name
-            Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0].replaceAll("_", " ")));
+            Player other = Groups.player.find(p -> Strings.stripColors(p.name).equalsIgnoreCase(args[0].replace("_", " ").replace("_", " ").replace("_", " "))); // why replaceAll doesn't work
             //give error message with scarlet-colored text if play
             if(other == null){
                 player.sendMessage("[scarlet]No player by that name found!");
                 if (Groups.player.size() <= 10) {
                     player.sendMessage("[stat]Other players:");
-                    Groups.player.each(e -> player.sendMessage("[white]"+Strings.stripColors(e.name).toLowerCase().replaceAll("_", " ")));
+                    Groups.player.each(e -> player.sendMessage("[white]"+Strings.stripColors(e.name).toLowerCase().replace("_", " ").replace("_", " ").replace("_", " ")));
                 }
             }
 
-            //send the other player a message, using [lightgray] for gray text color and [] to reset color
+            //send the other player a message, using [lightgray] for gray text color and [lightgray] to reset color
             player.sendMessage("[lightgray](pm) (me) -> " + other.name + "[lightgray]:[white] " + args[1]);
             other.sendMessage("[lightgray](pm) (" + player.name + "[lightgray]) -> (me):[white] " + args[1]);
         });
