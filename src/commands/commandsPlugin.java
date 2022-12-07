@@ -188,6 +188,7 @@ public class commandsPlugin extends Plugin{
                 return;
             }
             int page = Strings.parseInt(args[0]);
+            if (args[0] == null) {page = 1};
             Seq<Map> maplist = mindustry.Vars.maps.all();
             int pages = (int) Math.ceil(maplist.size / 8);
             Map map;
@@ -195,10 +196,10 @@ public class commandsPlugin extends Plugin{
             	player.sendMessage("[scarlet]page must be a number between[stat] 1[] and [stat]" + pages + "[].");
             	return;
             }
-
+            player.sendMessage("[gold]Map list")
             for (int i=(page-1)*8; i<8*page;i++) {
                 map = maplist.get(i);
-                player.sendMessage("[stat]-" + map.name() + "- (" + map.width + "x" + map.height +") By: [blue]"+map.author());
+                player.sendMessage("[stat]-" + map.name() + " (" + map.width + "x" + map.height +") By: [white]"+map.author());
             }
         });
     }
