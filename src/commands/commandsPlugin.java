@@ -8,6 +8,7 @@ import mindustry.content.*;
 import mindustry.game.Team;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
+import mindustry.Vars.maps;
 import mindustry.gen.Player;
 import mindustry.mod.*;
 import mindustry.net.Administration.*;
@@ -183,10 +184,22 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("maps", "[page]", "Sends a list of all maps in the server.", (args, player) -> {
             if(args.length == 1 && !Strings.canParseInt(args[0])){
-        		player.sendMessage("[scarlet]'page' must be a number.");
+        		player.sendMessage("[scarlet]page must be a number.");
                 return;
             }
-            
+            Int page = Strings.parseInt(args[0])
+            Seq<Map> maplist = mindustry.Vars.maps.all()
+            Int pages = Math.ceil(maplist.size / 8);
+            Map map;
+            if (page > pages || page < 1) {
+            	player.sendMessage("[scarlet]page must be a number between[stat] 1[] and [stat]" + pages + "[].");
+            	return;
+            }
+
+            for (int i=(page-1)*8; i<8*page;i++) {
+                map = maplist.get(i);
+                player.sendMessage("[stat]-" + map.name() + "- (" + map.width + "x" + map.height() +") By: [blue]"+map.author());
+            }
         });
     }
 }
