@@ -1,9 +1,8 @@
 package commands;
 
-import java.util.HashSet;
-
 import arc.*;
 import arc.util.*;
+import arc.struct.Seq;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.Team;
@@ -22,7 +21,7 @@ import static mindustry.Vars.world;
 
 public class commandsPlugin extends Plugin{
     //mcv command
-    private HashSet<String> votes = new HashSet<>();
+    private Seq<String> votes = new Seq<>();
 	
     //called when game initializes
     @Override
@@ -181,6 +180,13 @@ public class commandsPlugin extends Plugin{
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
+        });
+        handler.<Player>register("maps", "[page]", "Sends a list of all maps in the server.", (args, player) -> {
+            if(args.length == 1 && !Strings.canParseInt(args[0])){
+        		data.player.sendMessage("[scarlet]'page' must be a number.");
+                return;
+            }
+            
         });
     }
 }
