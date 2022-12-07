@@ -183,7 +183,7 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("maps", "[page]", "Sends a list of all maps in the server.", (args, player) -> {
             if(args.length == 1 && !Strings.canParseInt(args[0])){
-        		data.player.sendMessage("[scarlet]'page' must be a number.");
+        		player.sendMessage("[scarlet]'page' must be a number.");
                 return;
             }
             
