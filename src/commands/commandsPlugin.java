@@ -140,14 +140,7 @@ public class commandsPlugin extends Plugin{
             // clear map
             mindustry.gen.Building block;
             Groups.unit.each(u -> u.kill());
-        	for (int x=0; x<world.width(); x++) {
-        		for (int y=0; y<world.height(); y++) {
-        			block = world.build(x, y);
-        			if (block != null && (block.block != Blocks.coreShard && block.block != Blocks.coreNucleus && block.block != Blocks.coreFoundation && block.block != Blocks.coreBastion && block.block != Blocks.coreAcropolis && block.block != Blocks.coreCitadel && block.block != Blocks.worldProcessor && block.block != Blocks.worldCell && block.block != Blocks.worldMessage)) {
-        				block.kill();
-        			}
-        		}
-        	}
+        	Groups.build.each(b -> b.kill())
             Call.infoMessage("[green]Map cleaned! Removed all blocks and units!");
 	    });
 	    
