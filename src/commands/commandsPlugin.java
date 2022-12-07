@@ -189,7 +189,7 @@ public class commandsPlugin extends Plugin{
             }
             int page = Strings.parseInt(args[0]);
             Seq<Map> maplist = mindustry.Vars.maps.all();
-            int pages = Math.ceil(maplist.size / 8);
+            int pages = (int) Math.ceil(maplist.size / 8);
             Map map;
             if (page > pages || page < 1) {
             	player.sendMessage("[scarlet]page must be a number between[stat] 1[] and [stat]" + pages + "[].");
