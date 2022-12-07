@@ -134,22 +134,20 @@ public class commandsPlugin extends Plugin{
 
             this.votes.clear();
             Call.sendMessage("[red]MapClearVote: [green]vote passed, clearing map.");
-            Call.infoMessage("[scarlet]\u26a0 The map will be cleared in [orange]10[] seconds! \u26a0\n[]All units, players, and buildings (except cores) will be destroyed.");
+            Call.infoMessage("[scarlet]\u26a0 The map will be cleared in [orange]10[] seconds! \u26a0\n[]All units, players, and buildings (except cores) will be destroyed.\nYou may lag or crash during the map clear.");
         	try { Thread.sleep(10000); } 
 	        catch (InterruptedException e) {}
             // clear map
             mindustry.gen.Building block;
             Groups.unit.each(u -> u.kill());
-        	Groups.build.each(b -> if(block != null && (block.block != Blocks.coreShard && block.block != Blocks.coreNucleus && block.block != Blocks.coreFoundation && block.block != Blocks.coreBastion && block.block != Blocks.coreAcropolis && block.block != Blocks.coreCitadel && block.block != Blocks.worldProcessor && block.block != Blocks.worldCell && block.block != Blocks.worldMessage)) {b.kill();});
-            
-            /*for (int x=0; x<world.width(); x++) {
+            for (int x=0; x<world.width(); x++) {
         		for (int y=0; y<world.height(); y++) {
         			block = world.build(x, y);
         			if (block != null && (block.block != Blocks.coreShard && block.block != Blocks.coreNucleus && block.block != Blocks.coreFoundation && block.block != Blocks.coreBastion && block.block != Blocks.coreAcropolis && block.block != Blocks.coreCitadel && block.block != Blocks.worldProcessor && block.block != Blocks.worldCell && block.block != Blocks.worldMessage)) {
         				block.kill();
         			}
         		}
-        	}*/
+        	}
             Call.infoMessage("[green]Map cleaned! Removed all blocks and units!");
 	    });
 	    
