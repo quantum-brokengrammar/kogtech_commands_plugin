@@ -32,7 +32,7 @@ public class commandsPlugin extends Plugin{
     public commandsPlugin() {
         Events.on(PlayerLeave.class, e -> {
             Player player = e.player;
-            int cur = this.votes.size();
+            int cur = this.votes.size;
             int req = (int) Math.ceil(0.6 * Groups.player.size());
             if(votes.contains(player.uuid())) {
                 votes.remove(player.uuid());
@@ -122,7 +122,7 @@ public class commandsPlugin extends Plugin{
         
         handler.<Player>register("mcv", "Vote to clear map", (args, player) -> {
             this.votes.add(player.uuid());
-            int cur = this.votes.size();
+            int cur = this.votes.size;
             int req = (int) Math.ceil(0.6f * Groups.player.size());
             Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] wants to clear the map, [green]" + cur +
                 "[] votes, [green]" + req + "[] required");
