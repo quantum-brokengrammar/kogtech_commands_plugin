@@ -10,6 +10,7 @@ import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.gen.Player;
 import mindustry.mod.*;
+import mindustry.maps.Map;
 import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
 
@@ -188,7 +189,7 @@ public class commandsPlugin extends Plugin{
             }
             int page = Strings.parseInt(args[0]);
             Seq<Map> maplist = mindustry.Vars.maps.all();
-            int pages = Math.ceil(maplist.size / 8);
+            int pages = Mathf.ceil(maplist.size / 8);
             Map map;
             if (page > pages || page < 1) {
             	player.sendMessage("[scarlet]page must be a number between[stat] 1[] and [stat]" + pages + "[].");
