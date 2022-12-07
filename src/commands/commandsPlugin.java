@@ -188,7 +188,6 @@ public class commandsPlugin extends Plugin{
                 return;
             }
             int page = Strings.parseInt(args[0]);
-            if (args[0] == null) {page = 1;};
             Seq<Map> maplist = mindustry.Vars.maps.all();
             int pages = (int) Math.ceil(maplist.size / 8);
             Map map;
