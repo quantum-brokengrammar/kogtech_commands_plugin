@@ -187,8 +187,8 @@ public class commandsPlugin extends Plugin{
         		player.sendMessage("[scarlet]page must be a number.");
                 return;
             }
-            Int page = Strings.parseInt(args[0])
-            Seq<Map> maplist = mindustry.Vars.maps.all()
+            Int page = Strings.parseInt(args[0]);
+            Seq<Map> maplist = mindustry.Vars.maps.all();
             Int pages = Math.ceil(maplist.size / 8);
             Map map;
             if (page > pages || page < 1) {
