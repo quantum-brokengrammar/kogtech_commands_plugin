@@ -81,7 +81,7 @@ public class commandsPlugin extends Plugin{
                 player.sendMessage("[scarlet]No player by that name found!");
                 if (Groups.player.size() <= 10) {
                     player.sendMessage("[stat]Other players:");
-                    Groups.player.each(e -> player.sendMessage("[white]"+Strings.stripColors(e.name).toLowerCase().replace("_", " "))));
+                    Groups.player.each(e -> player.sendMessage("[white]"+Strings.stripColors(e.name).toLowerCase().replace("_", " ")));
                 }
             }
 
@@ -140,7 +140,7 @@ public class commandsPlugin extends Plugin{
             // clear map
             mindustry.gen.Building block;
             Groups.unit.each(u -> u.kill());
-        	Groups.build.each(b -> if(block != null && (block.block != Blocks.coreShard && block.block != Blocks.coreNucleus && block.block != Blocks.coreFoundation && block.block != Blocks.coreBastion && block.block != Blocks.coreAcropolis && block.block != Blocks.coreCitadel && block.block != Blocks.worldProcessor && block.block != Blocks.worldCell && block.block != Blocks.worldMessage)) {b.kill()});
+        	Groups.build.each(b -> if(block != null && (block.block != Blocks.coreShard && block.block != Blocks.coreNucleus && block.block != Blocks.coreFoundation && block.block != Blocks.coreBastion && block.block != Blocks.coreAcropolis && block.block != Blocks.coreCitadel && block.block != Blocks.worldProcessor && block.block != Blocks.worldCell && block.block != Blocks.worldMessage)) {b.kill();});
             
             /*for (int x=0; x<world.width(); x++) {
         		for (int y=0; y<world.height(); y++) {
