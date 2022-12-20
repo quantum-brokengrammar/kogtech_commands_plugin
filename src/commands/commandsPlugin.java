@@ -201,5 +201,11 @@ public class commandsPlugin extends Plugin{
                 player.sendMessage("[stat]-" + map.name() + " (" + map.width + "x" + map.height +") By: [white]"+map.author());
             }
         });
+        handler.<Player>register("real", "<player...>", "A simple command that verifies a player.", (args, player) -> {
+            Player realplayer = Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0]));
+            player.sendMessage("Is the player real?");
+            player.sendMessage("Player names: "+realplayer.getInfo().names.toString());
+            player.sendMessage("Player joined "+realplayer.getInfo().timesJoined.toString()+" times.");
+        });
     }
 }
