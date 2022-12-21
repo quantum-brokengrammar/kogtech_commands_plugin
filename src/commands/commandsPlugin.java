@@ -36,11 +36,11 @@ public class commandsPlugin extends Plugin{
             Player player = e.player;
             int cur = this.votes.size;
             int req = (int) Math.ceil(0.6 * Groups.player.size());
-            if(votes.contains(player.uuid())) {
+            if(votes.containsKey(player.uuid())) {
                 votes.remove(player.uuid());
                 Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] left, [green]" + cur + "[] votes, [green]" + req + "[] required");
             }
-            if (nicknames.contains(nicknames.get(player.name)) != null) {
+            if (nicknames.containsKey(nicknames.get(player.name)) != null) {
                 nicknames.remove(player.name);
             }
         });
