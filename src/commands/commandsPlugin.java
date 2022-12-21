@@ -94,10 +94,10 @@ public class commandsPlugin extends Plugin{
             other.sendMessage("[lightgray](pm) (" + player.name + "[lightgray]) -> (me):[white] " + args[1]);
         });
         handler.<Player>register("me", "<text...>", "Broadcasts a roleplay message with asterisks to all players.", (args, player) -> {
-            Call.sendMessage("[lightgray]*"+nicknames.get(player.name)+"[lightgray] "+args[0]+"[lightgray]*");
+            Call.sendMessage("[lightgray]*".concat(nicknames.get(player.name)).concat("[lightgray] ").concat(args[0]).concat("[lightgray]*"));
         });
         handler.<Player>register("my", "<text...>", "Broadcasts a roleplay message with asterisks to all players.", (args, player) -> {
-            Call.sendMessage("[lightgray]*"+nicknames.get(player.name)+"[lightgray]'s "+args[0]+"[lightgray]*");
+            Call.sendMessage("[lightgray]*".concat(nicknames.get(player.name)).concat("[lightgray]'s ").concat(args[0]).concat("[lightgray]*"))
         });
         handler.<Player>register("clrchat", "Clears the chat. Needs admin to execute this command.", (args, player) -> {
             if (player.admin) {
