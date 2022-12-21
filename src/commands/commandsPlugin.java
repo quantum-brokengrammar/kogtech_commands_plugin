@@ -24,7 +24,7 @@ public class commandsPlugin extends Plugin{
     //mcv command
     private Seq<String> votes = new Seq<>();
 	//nicknames and real names
-    private Seq<String> nicknames = new Seq<>();
+    private Seq<String, String> nicknames = new Seq<>();
     //called when game initializes
     @Override
     public void init(){
