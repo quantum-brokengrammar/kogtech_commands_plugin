@@ -2,7 +2,7 @@ package commands;
 
 import arc.*;
 import arc.util.*;
-import arc.struct.Seq;
+import java.util.HashMap;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.Team;
@@ -22,9 +22,9 @@ import static mindustry.Vars.world;
 
 public class commandsPlugin extends Plugin{
     //mcv command
-    private Seq<String> votes = new Seq<>();
+    private HashMap<String> votes = new HashMap<>();
 	//nicknames and real names
-    private Seq<String, String> nicknames = new Seq<>();
+    private HashMap<String, String> nicknames = new HashMap<>();
     //called when game initializes
     @Override
     public void init(){
@@ -126,7 +126,7 @@ public class commandsPlugin extends Plugin{
             player.sendMessage("Changed nickname to: [accent]" + args[0]);
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
-            nicknames.insert(player.name, "nickname");
+            nicknames.put(player.name, "nickname");
         });
         
         handler.<Player>register("mcv", "Vote to clear map", (args, player) -> {
@@ -196,7 +196,7 @@ public class commandsPlugin extends Plugin{
                 return;
             }
             int page = Strings.parseInt(args[0]);
-            Seq<Map> maplist = mindustry.Vars.maps.all();
+            HashMap<Map> maplist = mindustry.Vars.maps.all();
             int pages = (int) Math.ceil(maplist.size / 8);
             Map map;
             if (page > pages || page < 1) {
