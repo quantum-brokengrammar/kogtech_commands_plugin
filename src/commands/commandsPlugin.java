@@ -126,7 +126,7 @@ public class commandsPlugin extends Plugin{
             player.sendMessage("Changed nickname to: [accent]" + args[0]);
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
-            nicknames.put(player.name, "nickname");
+            nicknames.add(player.name, "nickname");
         });
         
         handler.<Player>register("mcv", "Vote to clear map", (args, player) -> {
