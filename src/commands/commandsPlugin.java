@@ -41,7 +41,7 @@ public class commandsPlugin extends Plugin{
                 Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] left, [green]" + cur + "[] votes, [green]" + req + "[] required");
             }
             if (nicknames.contains(nicknames.get(player.name)) != null) {
-                nicknames.remove(player.name)
+                nicknames.remove(player.name);
             }
         });
         // clear votes on game over
@@ -126,7 +126,7 @@ public class commandsPlugin extends Plugin{
             player.sendMessage("Changed nickname to: [accent]" + args[0]);
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
-            nicknames.put(player.name, "nickname")
+            nicknames.put(player.name, "nickname");
         });
         
         handler.<Player>register("mcv", "Vote to clear map", (args, player) -> {
