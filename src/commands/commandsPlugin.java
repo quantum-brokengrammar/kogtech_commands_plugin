@@ -22,7 +22,7 @@ import static mindustry.Vars.world;
 
 public class commandsPlugin extends Plugin{
     //mcv command
-    private HashMap<String> votes = new HashMap<>();
+    private HashMap<String, nul> votes = new HashMap<>();
 	//nicknames and real names
     private HashMap<String, String> nicknames = new HashMap<>();
     //called when game initializes
@@ -196,7 +196,7 @@ public class commandsPlugin extends Plugin{
                 return;
             }
             int page = Strings.parseInt(args[0]);
-            HashMap<Map> maplist = mindustry.Vars.maps.all();
+            HashMap<Map, nul> maplist = mindustry.Vars.maps.all();
             int pages = (int) Math.ceil(maplist.size / 8);
             Map map;
             if (page > pages || page < 1) {
