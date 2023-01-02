@@ -1,8 +1,7 @@
 package commands;
-
 import arc.*;
 import arc.util.*;
-import java.util.HashMap;
+import arc.struct.Seq;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.Team;
@@ -13,18 +12,15 @@ import mindustry.mod.*;
 import mindustry.maps.Map;
 import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
-
 import static mindustry.Vars.content;
 import static mindustry.Vars.maps;
 import static mindustry.Vars.netServer;
 import static mindustry.Vars.state;
 import static mindustry.Vars.world;
-
 public class commandsPlugin extends Plugin{
     //mcv command
-    private HashMap<String, nul> votes = new HashMap<>();
-	//nicknames and real names
-    private HashMap<String, String> nicknames = new HashMap<>();
+    private Seq<String> votes = new Seq<>();
+	
     //called when game initializes
     @Override
     public void init(){
@@ -36,12 +32,9 @@ public class commandsPlugin extends Plugin{
             Player player = e.player;
             int cur = this.votes.size;
             int req = (int) Math.ceil(0.6 * Groups.player.size());
-            if(votes.containsKey(player.uuid())) {
+            if(votes.contains(player.uuid())) {
                 votes.remove(player.uuid());
                 Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] left, [green]" + cur + "[] votes, [green]" + req + "[] required");
-            }
-            if (nicknames.containsKey(nicknames.get(player.name)) != null) {
-                nicknames.remove(player.name);
             }
         });
         // clear votes on game over
@@ -64,7 +57,6 @@ public class commandsPlugin extends Plugin{
             }
         });
     }
-
     //register commands that player can invoke in-game
     @Override
     public void registerClientCommands(CommandHandler handler){
@@ -88,16 +80,12 @@ public class commandsPlugin extends Plugin{
                     Groups.player.each(e -> player.sendMessage("[white]"+Strings.stripColors(e.name).toLowerCase().replace("_", " ")));
                 }
             }
-
             //send the other player a message, using [lightgray] for gray text color and [lightgray] to reset color
             player.sendMessage("[lightgray](pm) (me) -> " + other.name + "[lightgray]:[white] " + args[1]);
             other.sendMessage("[lightgray](pm) (" + player.name + "[lightgray]) -> (me):[white] " + args[1]);
         });
         handler.<Player>register("me", "<text...>", "Broadcasts a roleplay message with asterisks to all players.", (args, player) -> {
-            Call.sendMessage("[lightgray]*".concat(nicknames.get(player.name)).concat("[lightgray] ").concat(args[0]).concat("[lightgray]*"));
-        });
-        handler.<Player>register("my", "<text...>", "Broadcasts a roleplay message with asterisks to all players.", (args, player) -> {
-            Call.sendMessage("[lightgray]*".concat(nicknames.get(player.name)).concat("[lightgray]'s ").concat(args[0]).concat("[lightgray]*"));
+            Call.sendMessage("[lightgray]*"+player.name+"[lightgray] "+args[0]+"[lightgray]*");
         });
         handler.<Player>register("clrchat", "Clears the chat. Needs admin to execute this command.", (args, player) -> {
             if (player.admin) {
@@ -126,7 +114,6 @@ public class commandsPlugin extends Plugin{
             player.sendMessage("Changed nickname to: [accent]" + args[0]);
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
-            nicknames.put(player.name, "nickname");
         });
         
         handler.<Player>register("mcv", "Vote to clear map", (args, player) -> {
@@ -135,11 +122,9 @@ public class commandsPlugin extends Plugin{
             int req = (int) Math.ceil(0.6f * Groups.player.size());
             Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] wants to clear the map, [green]" + cur +
                 "[] votes, [green]" + req + "[] required");
-
             if (cur < req) {
                 return;
             }
-
             this.votes.clear();
             Call.sendMessage("[red]MapClearVote: [green]vote passed, clearing map.");
             Call.infoMessage("[scarlet]\u26a0 The map will be cleared in [orange]10[] seconds! \u26a0\n[]All units, players, and buildings (except cores) will be destroyed.\nYou may lag or crash during the map clear.");
@@ -196,7 +181,7 @@ public class commandsPlugin extends Plugin{
                 return;
             }
             int page = Strings.parseInt(args[0]);
-            HashMap<Map, nul> maplist = mindustry.Vars.maps.all();
+            Seq<Map> maplist = mindustry.Vars.maps.all();
             int pages = (int) Math.ceil(maplist.size / 8);
             Map map;
             if (page > pages || page < 1) {
@@ -213,7 +198,7 @@ public class commandsPlugin extends Plugin{
             Player realplayer = Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0]));
             player.sendMessage("Is the player real?");
             player.sendMessage("Player names: "+realplayer.getInfo().names.toString());
-            player.sendMessage("Player joined "+String.valueOf(realplayer.getInfo().timesJoined)+" times.");
+            player.sendMessage("Player joined "+String.valueOf(realplayer.getInfo()).timesJoined+" times.");
         });
     }
 }
