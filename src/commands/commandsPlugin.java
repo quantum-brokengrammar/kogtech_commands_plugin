@@ -198,7 +198,7 @@ public class commandsPlugin extends Plugin{
             Player realplayer = Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0]));
             player.sendMessage("Is the player real?");
             player.sendMessage("Player names: "+realplayer.getInfo().names.toString());
-            player.sendMessage("Player joined "+String.valueOf(realplayer.getInfo()).timesJoined+" times.");
+            player.sendMessage("Player joined "+String.valueOf(realplayer.getInfo().timesJoined)+" times.");
         });
     }
 }
