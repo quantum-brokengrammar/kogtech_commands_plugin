@@ -178,7 +178,7 @@ public class commandsPlugin extends Plugin{
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
         });
-        handler.<Player>register("maps", "[page]", "Sends a list of all maps in the server.", (args, player) -> {
+        handler.<Player>register("maps", "[page]", "Shows a list of all maps in the server.", (args, player) -> {
             if(args.length == 1 && !Strings.canParseInt(args[0])){
         		player.sendMessage("[scarlet]page must be a number.");
                 return;
