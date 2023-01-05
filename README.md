@@ -9,4 +9,6 @@ A simple plugin for Mindustry Servers (v7 Plugin)
 - [X] **/clrchat** - Clears the chat. Needs admin to execute this command.
 - [X] **/despawn** - Despawns all units. Needs admin to execute this command.
 - [X] **/mcv** - Vote to clear the map.
+- [X] **/maps** - Shows a list of all maps in the server.
+- [X] **/units** - Outputs how many units on the server.
 - [ ] **/reply** - Send a private message to previous player.
