@@ -75,10 +75,6 @@ public class commandsPlugin extends Plugin{
             //give error message with scarlet-colored text if play
             if(other == null){
                 player.sendMessage("[scarlet]No player by that name found!");
-                if (Groups.player.size() <= 10) {
-                    player.sendMessage("[stat]Other players:");
-                    Groups.player.each(e -> player.sendMessage("[white]"+Strings.stripColors(e.name).toLowerCase().replace("_", " ")));
-                }
             }
             //send the other player a message, using [lightgray] for gray text color and [lightgray] to reset color
             player.sendMessage("[lightgray](pm) (me) -> " + other.name + "[lightgray]:[white] " + args[1]);
