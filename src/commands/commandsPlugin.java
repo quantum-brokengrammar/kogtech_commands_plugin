@@ -24,7 +24,7 @@ public class commandsPlugin extends Plugin{
     //called when game initializes
     @Override
     public void init(){
-        
+        state.rules.revealedBlocks.addAll(Blocks.slagCentrifuge, Blocks.heatReactor, Blocks.shieldProjector, Blocks.largeShieldProjector, Blocks.beamLink);
     }
     
     public commandsPlugin() {
