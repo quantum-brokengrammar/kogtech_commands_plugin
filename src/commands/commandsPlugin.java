@@ -25,7 +25,7 @@ public class commandsPlugin extends Plugin{
     @Override
     public void init(){
         Events.on(PlayEvent.class, event -> {
-        state.rules.revealedBlocks.addAll(Blocks.slagCentrifuge, Blocks.heatReactor, Blocks.shieldProjector, Blocks.largeShieldProjector, Blocks.beamLink);
+        state.rules.revealedBlocks.addAll(Blocks.slagCentrifuge, Blocks.heatReactor, Blocks.shieldProjector, Blocks.largeShieldProjector, Blocks.beamLink, Blocks.launchPad, Blocks.interplanetaryAccelerator);
         });
     }
     
