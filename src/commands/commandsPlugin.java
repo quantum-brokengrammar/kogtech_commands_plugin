@@ -18,9 +18,7 @@ import static mindustry.Vars.netServer;
 import static mindustry.Vars.state;
 import static mindustry.Vars.world;
 public class commandsPlugin extends Plugin{
-    //mcv command
-    private Seq<String> votes = new Seq<>();
-	
+
     //called when game initializes
     @Override
     public void init(){
@@ -29,21 +27,7 @@ public class commandsPlugin extends Plugin{
         });
     }
     
-    public commandsPlugin() {
-        Events.on(PlayerLeave.class, e -> {
-            Player player = e.player;
-            int cur = this.votes.size;
-            int req = (int) Math.ceil(0.6 * Groups.player.size());
-            if(votes.contains(player.uuid())) {
-                votes.remove(player.uuid());
-                Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] left, [green]" + cur + "[] votes, [green]" + req + "[] required");
-            }
-        });
-        // clear votes on game over
-        Events.on(GameOverEvent.class, e -> {
-            this.votes.clear();
-        });
-    }
+    public commandsPlugin() {}
     //register commands that run on the server
     @Override
     public void registerServerCommands(CommandHandler handler){
@@ -63,8 +47,8 @@ public class commandsPlugin extends Plugin{
     @Override
     public void registerClientCommands(CommandHandler handler){
         /* Template
-        handler.<Player>register("command", "<arg>", "A simple command that player's", (args, player) -> {
-            // comands here
+        handler.<Player>register("command", "<arg>", "A simple command template.", (args, player) -> {
+            // commands here
         });
         */
         //Commands
@@ -116,34 +100,6 @@ public class commandsPlugin extends Plugin{
             player.name = nickname+"[lightgray] ("+player.name+"[lightgray])";
             }
         });
-        
-        handler.<Player>register("mcv", "Vote to clear map", (args, player) -> {
-            this.votes.add(player.uuid());
-            int cur = this.votes.size;
-            int req = (int) Math.ceil(0.6f * Groups.player.size());
-            Call.sendMessage("[red]MapClearVote: [accent]" + player.name + "[white] wants to clear the map, [green]" + cur +
-                "[] votes, [green]" + req + "[] required");
-            if (cur < req) {
-                return;
-            }
-            this.votes.clear();
-            Call.sendMessage("[red]MapClearVote: [green]vote passed, clearing map.");
-            Call.infoMessage("[scarlet]\u26a0 The map will be cleared in [orange]10[] seconds! \u26a0\n[]All units, players, and buildings (except cores) will be destroyed.\nYou may lag or crash during the map clear.");
-        	try { Thread.sleep(10000); } 
-	        catch (InterruptedException e) {}
-            // clear map
-            mindustry.gen.Building block;
-            Groups.unit.each(u -> u.kill());
-            for (int x=0; x<world.width(); x++) {
-        		for (int y=0; y<world.height(); y++) {
-        			block = world.build(x, y);
-        			if (block != null && (block.block != Blocks.coreShard && block.block != Blocks.coreNucleus && block.block != Blocks.coreFoundation && block.block != Blocks.coreBastion && block.block != Blocks.coreAcropolis && block.block != Blocks.coreCitadel && block.block != Blocks.worldProcessor && block.block != Blocks.worldCell && block.block != Blocks.worldMessage)) {
-        				block.kill();
-        			}
-        		}
-        	}
-            Call.infoMessage("[green]Map cleaned! Removed all blocks and units!");
-	    });
 	    
         handler.<Player>register("players", "Outputs a list of all the players online in the server.", (args, player) -> {
             player.sendMessage("[stat]There are currently [green]"+Groups.player.size()+"[stat] players online.");
@@ -175,31 +131,6 @@ public class commandsPlugin extends Plugin{
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
-        });
-        handler.<Player>register("maps", "[page]", "Shows a list of all maps in the server.", (args, player) -> {
-            if(args.length == 1 && !Strings.canParseInt(args[0])){
-        		player.sendMessage("[scarlet]page must be a number.");
-                return;
-            }
-            int page = Strings.parseInt(args[0]);
-            Seq<Map> maplist = mindustry.Vars.maps.all();
-            int pages = (int) Math.ceil(maplist.size / 8);
-            Map map;
-            if (page > pages || page < 1) {
-            	player.sendMessage("[scarlet]page must be a number between[stat] 1[] and [stat]" + pages + "[].");
-            	return;
-            }
-            player.sendMessage("[gold]Map list");
-            for (int i=(page-1)*8; i<8*page;i++) {
-                map = maplist.get(i);
-                player.sendMessage("[stat]-" + map.name() + " (" + map.width + "x" + map.height +") By: [white]"+map.author());
-            }
-        });
-        handler.<Player>register("real", "<player...>", "A simple command that verifies a player.", (args, player) -> {
-            Player realplayer = Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0]));
-            player.sendMessage("Is the player real?");
-            player.sendMessage("Player names: "+realplayer.getInfo().names.toString());
-            player.sendMessage("Player joined "+String.valueOf(realplayer.getInfo().timesJoined)+" times.");
         });
     }
 }
