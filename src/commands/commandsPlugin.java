@@ -61,10 +61,11 @@ public class commandsPlugin extends Plugin{
             //give error message with scarlet-colored text if play
             if(other == null){
                 player.sendMessage("[scarlet]No player by that name found!");
+            } else {
+                //send the other player a message, using [lightgray] for gray text color and [lightgray] to reset color
+                player.sendMessage("[lightgray](pm) (me) -> " + other.name + "[lightgray]:[white] " + args[1]);
+                other.sendMessage("[lightgray](pm) (" + player.name + "[lightgray]) -> (me):[white] " + args[1]);
             }
-            //send the other player a message, using [lightgray] for gray text color and [lightgray] to reset color
-            player.sendMessage("[lightgray](pm) (me) -> " + other.name + "[lightgray]:[white] " + args[1]);
-            other.sendMessage("[lightgray](pm) (" + player.name + "[lightgray]) -> (me):[white] " + args[1]);
         });
         handler.<Player>register("me", "<text...>", "Broadcasts a roleplay message with asterisks to all players.", (args, player) -> {
             Call.sendMessage("[lightgray]*"+player.name+"[lightgray] "+args[0]+"[lightgray]*");
@@ -110,6 +111,7 @@ public class commandsPlugin extends Plugin{
 	    handler.<Player>register("units", "Outputs how many units on the server.", (args, player) -> {
             player.sendMessage("[stat]There are currently "+Groups.unit.size()+" units.");
         });
+
 	    handler.<Player>register("infop", "<player...>", "Gets player info.", (args, player) -> {
             if (player.admin) {
                 if (Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0])) != null) {
@@ -131,6 +133,34 @@ public class commandsPlugin extends Plugin{
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
             }
+        });
+
+        handler.<Player>register("maps", "[page]", "Shows a list of all maps in the server.", (args, player) -> {
+            
+            if(args.length == 1 && !Strings.canParseInt(args[0])){
+        		player.sendMessage("[scarlet]page must be a number.");
+                return;
+            }
+            int page = Strings.parseInt(args[0]);
+            Seq<Map> maplist = mindustry.Vars.maps.all();
+            int pages = (int) Math.ceil(maplist.size / 8);
+            Map map;
+            if (page > pages || page < 1) {
+            	player.sendMessage("[scarlet]page must be a number between[stat] 1[] and [stat]" + pages + "[].");
+            	return;
+            }
+            player.sendMessage("[gold]Map list");
+            for (int i=(page-1)*8; i<8*page;i++) {
+                map = maplist.get(i);
+                player.sendMessage("[stat]-" + map.name() + " [grey](" + map.width + "x" + map.height +") By: [white]"+map.author());
+            }
+        });
+
+        handler.<Player>register("real", "<player...>", "A simple command that verifies a player.", (args, player) -> {
+            Player realplayer = Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0]));
+            player.sendMessage("Is the player real?");
+            player.sendMessage("Player names: "+realplayer.getInfo().names.toString());
+            player.sendMessage("Player joined "+String.valueOf(realplayer.getInfo().timesJoined)+" times.");
         });
     }
 }
