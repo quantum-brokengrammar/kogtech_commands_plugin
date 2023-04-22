@@ -86,7 +86,7 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("despawn", "Despawns all units. Needs admin to execute this command.", (args, player) -> {
             if (player.admin) {
-                Groups.unit.each(u->u.kill());
+                Groups.unit.each(u=>{Call.unitDespawn(u)})`
                 player.sendMessage("Despawned units successfully.");
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
@@ -158,9 +158,13 @@ public class commandsPlugin extends Plugin{
 
         handler.<Player>register("real", "<player...>", "A simple command that verifies a player.", (args, player) -> {
             Player realplayer = Groups.player.find(e->Strings.stripColors(e.name).equalsIgnoreCase(args[0]));
-            player.sendMessage("Is the player real?");
-            player.sendMessage("Player names: "+realplayer.getInfo().names.toString());
-            player.sendMessage("Player joined "+String.valueOf(realplayer.getInfo().timesJoined)+" times.");
+            if(realplayer == null){
+                player.sendMessage("[scarlet]No player by that name found!");
+            } else {
+                player.sendMessage("Is the player real?");
+                player.sendMessage("Player names: "+realplayer.getInfo().names.toString());
+                player.sendMessage("Player joined "+String.valueOf(realplayer.getInfo().timesJoined)+" times.");
+            }
         });
     }
 }
