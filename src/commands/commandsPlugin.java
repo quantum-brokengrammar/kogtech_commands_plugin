@@ -86,7 +86,7 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("despawn", "Despawns all units. Needs admin to execute this command.", (args, player) -> {
             if (player.admin) {
-                Groups.unit.each(u=>{Call.unitDespawn(u)})`
+                Groups.unit.each(u->{Call.unitDespawn(u)})`
                 player.sendMessage("Despawned units successfully.");
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
@@ -139,7 +139,6 @@ public class commandsPlugin extends Plugin{
                     player.sendMessage("[stat]Times kicked: [white]"+String.valueOf(pfind.getInfo().timesKicked)); 
                     player.sendMessage("[stat]Banned?: [white]"+String.valueOf(pfind.getInfo().banned)); 
                     player.sendMessage("[stat]Admin?: [white]"+String.valueOf(pfind.admin)); 
-                }
                 } else {
                     player.sendMessage("[scarlet]No player by that name found!");
                 }
