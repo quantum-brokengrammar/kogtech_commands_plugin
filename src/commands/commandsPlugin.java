@@ -86,7 +86,7 @@ public class commandsPlugin extends Plugin{
         });
         handler.<Player>register("despawn", "Despawns all units. Needs admin to execute this command.", (args, player) -> {
             if (player.admin) {
-                Groups.unit.each(u->{Call.unitDespawn(u)});
+                Groups.unit.each(u->{Call.unitDespawn(u)};);
                 player.sendMessage("Despawned units successfully.");
             } else {
                 player.sendMessage("[scarlet]You must be admin to use this command.");
